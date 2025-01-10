@@ -19,6 +19,7 @@ struct PostsController: RouteCollection {
     
     @Sendable
     func create(req: Request) async throws -> PostDTO {
+        
         let post = try req.content.decode(PostDTO.self).toModel()
         
         try await post.save(on: req.db)

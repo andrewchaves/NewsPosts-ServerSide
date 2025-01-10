@@ -17,23 +17,21 @@ struct PostDTO: Content {
         let model = Post()
         
         model.id = self.id
+        model.publishedAt = self.publishedAt
+        model.updatedAt = self.updatedAt
+        model.isPublished = self.isPublished
+        model.viewsCount = self.viewsCount
         if let headline = self.headline
             , let content = self.content
             , let author = self.author
-            , let publishedAt = self.publishedAt
-            , let updatedAt = self.updatedAt
-            , let isPublished = self.isPublished
+            , let category = self.category
             , let imageURL = self.imageURL
-            , let viewsCount = self.viewsCount
         {
             model.headline = headline
             model.content = content
             model.author = author
-            model.publishedAt = publishedAt
-            model.updatedAt = updatedAt
-            model.isPublished = isPublished
+            model.category = category
             model.imageURL = imageURL
-            model.viewsCount = viewsCount
         }
         return model
     }

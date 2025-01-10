@@ -26,19 +26,19 @@ final class Post: Model, @unchecked Sendable {
     var category: String
     
     @Field(key: "published_at")
-    var publishedAt: Date
+    var publishedAt: Date?
     
     @Field(key: "updated_at")
     var updatedAt: Date?
     
     @Field(key: "is_published")
-    var isPublished: Bool
+    var isPublished: Bool?
     
     @Field(key: "image_url")
-    var imageURL: String?
+    var imageURL: String
     
     @Field(key: "views_count")
-    var viewsCount: Int
+    var viewsCount: Int?
     
     init() { }
     
@@ -47,15 +47,16 @@ final class Post: Model, @unchecked Sendable {
          content: String,
          author: String,
          category: String,
-         publishedAt: Date = Date(),
-         updatedAt: Date = Date(),
-         isPublished: Bool = false,
+         publishedAt: Date,
+         updatedAt: Date,
+         isPublished: Bool,
          imageURL: String,
-         viewsCount: Int = 0
+         viewsCount: Int
     ) {
         self.id = id
         self.headline = headline
         self.content = content
+        self.author = author
         self.category = category
         self.publishedAt = publishedAt
         self.updatedAt = updatedAt
@@ -69,7 +70,8 @@ final class Post: Model, @unchecked Sendable {
             id: self.id,
             headline: self.headline,
             content: self.content,
-            category: self.content,
+            author: self.author,
+            category: self.category,
             publishedAt: self.publishedAt,
             updatedAt: self.updatedAt,
             isPublished: self.isPublished,
