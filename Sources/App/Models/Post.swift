@@ -6,6 +6,13 @@ import struct Foundation.UUID
 /// Property wrappers interact poorly with `Sendable` checking, causing a warning for the `@ID` property
 /// It is recommended you write your model with sendability checking on and then suppress the warning
 /// afterwards with `@unchecked Sendable`.
+
+enum Category: String, Codable {
+    case world
+    case politics
+    case technology
+    case finances
+}
 final class Post: Model, @unchecked Sendable {
     
     static let schema = "posts"
@@ -22,8 +29,8 @@ final class Post: Model, @unchecked Sendable {
     @Field(key: "author")
     var author: String
     
-    @Field(key: "category")
-    var category: String
+    @Enum(key: "category")
+    var category: Category
     
     @Field(key: "published_at")
     var publishedAt: Date?
@@ -46,7 +53,7 @@ final class Post: Model, @unchecked Sendable {
          headline: String,
          content: String,
          author: String,
-         category: String,
+         category: Category,
          publishedAt: Date,
          updatedAt: Date,
          isPublished: Bool,

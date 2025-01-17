@@ -6,7 +6,7 @@ struct PostDTO: Content {
     var headline: String?
     var content: String?
     var author: String?
-    var category: String?
+    var category: Category?
     var publishedAt: Date?
     var updatedAt: Date?
     var isPublished: Bool?
